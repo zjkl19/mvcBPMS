@@ -1,0 +1,186 @@
+﻿@model IEnumerable<mvcBPMS.Models.project>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ProjectDetails</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <p>
+        该项目基本情况如下：
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                项目名称
+            </th>
+            <th>
+                标准产值
+            </th>
+            <th>
+                进场日期
+            </th>
+            <th>
+                退场日期
+            </th>
+            <th>
+                报告是否批准
+            </th>
+            <th>
+                报告批准日期
+            </th>
+
+
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.project_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.standard_product_value)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.enter_date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.exit_date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.is_approved)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.approved_datatime)
+            </td>
+
+
+        </tr>
+    }
+    
+    </table>
+    <p>
+        该项目关联合同情况如下：
+    </p>
+    
+        <table class="table">
+            <tr>
+                <th>
+                    合同id
+                </th>
+                <th>
+                    合同名称
+                </th>
+                <th>
+                    合同金额
+                </th>
+                
+                <th></th>
+            </tr>
+        @foreach (dynamic item in ViewBag.cnt)
+        {
+            <tr>
+                <td>
+                    @item.id
+                </td>
+                <td>
+                   @item.contact_name
+                </td>
+                <td>
+                    @item.contact_amount
+                </td>
+            </tr>   
+        }
+        </table>
+
+    <p>
+        该项目职工参与情况如下：
+    </p>
+
+    <table class="table">
+        <tr>
+            <th>
+                职工id
+            </th>
+            <th>
+                参与现场
+            </th>
+            <th>
+                参与方案制订
+            </th>
+            <th>
+                参与报告
+            </th>
+
+            <th></th>
+        </tr>
+        @foreach (dynamic item in ViewBag.r_p_s)
+        {
+            <tr>
+                <td>
+                    @item.staff_id
+                </td>
+                <td>
+                    @item.is_scene
+                </td>
+                <td>
+                    @item.is_scheme
+                </td>
+                <td>
+                    @item.is_report
+                </td>
+            </tr>
+        }
+    </table>
+
+    <p>
+        该项目资金流动情况如下：
+    </p>
+
+    <table class="table">
+        <tr>
+            <th>
+                资金流动日期
+            </th>
+            <th>
+                现场开支
+            </th>
+            <th>
+                开出发票金额
+            </th>
+            <th>
+                进账金额
+            </th>
+
+            <th></th>
+        </tr>
+        @foreach (dynamic item in ViewBag.p_m_f)
+        {
+            <tr>
+                <td>
+                    @item.fund_flow_datetime
+                </td>
+                <td>
+                    @item.expense
+                </td>
+                <td>
+                    @item.invoice_amount
+                </td>
+                <td>
+                    @item.income_amout
+                </td>
+            </tr>
+        }
+    </table>
+    
+</body>
+</html>

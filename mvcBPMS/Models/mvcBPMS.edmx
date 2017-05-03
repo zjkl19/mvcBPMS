@@ -1,0 +1,448 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BPMSxModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="contact">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="char" MaxLength="32" Nullable="false" />
+          <Property Name="staff_id" Type="char" MaxLength="32" Nullable="false" />
+          <Property Name="contact_id" Type="char" MaxLength="13" Nullable="false" />
+          <Property Name="contact_name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="contact_amount" Type="money" Nullable="false" />
+          <Property Name="delegation_client" Type="varchar" MaxLength="50" />
+          <Property Name="accept_way" Type="varchar" MaxLength="10" />
+          <Property Name="is_corporation_signed" Type="bit" Nullable="false" />
+          <Property Name="is_client_signed" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="project">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="char" MaxLength="32" Nullable="false" />
+          <Property Name="contact_id" Type="char" MaxLength="32" />
+          <Property Name="project_name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="standard_product_value" Type="money" />
+          <Property Name="enter_date" Type="datetime" />
+          <Property Name="exit_date" Type="datetime" />
+          <Property Name="is_approved" Type="bit" Nullable="false" />
+          <Property Name="approved_datatime" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="project_money_flow">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="char" MaxLength="32" Nullable="false" />
+          <Property Name="staff_id" Type="char" MaxLength="32" Nullable="false" />
+          <Property Name="project_id" Type="char" MaxLength="32" Nullable="false" />
+          <Property Name="fund_flow_datetime" Type="datetime" Nullable="false" />
+          <Property Name="expense" Type="money" Nullable="false" />
+          <Property Name="invoice_amount" Type="money" Nullable="false" />
+          <Property Name="income_amout" Type="money" />
+        </EntityType>
+        <EntityType Name="r_project_staff">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="char" MaxLength="32" Nullable="false" />
+          <Property Name="project_id" Type="char" MaxLength="32" Nullable="false" />
+          <Property Name="staff_id" Type="char" MaxLength="32" Nullable="false" />
+          <Property Name="is_scene" Type="bit" Nullable="false" />
+          <Property Name="is_scheme" Type="bit" Nullable="false" />
+          <Property Name="is_report" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="staff">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="char" MaxLength="32" Nullable="false" />
+          <Property Name="staff_no" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="staff_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="gender" Type="bit" Nullable="false" />
+          <Property Name="phone_number" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="position" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <Association Name="FK_CONTACT_ACCEPT_STAFF">
+          <End Role="staff" Type="Self.staff" Multiplicity="1" />
+          <End Role="contact" Type="Self.contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="staff">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="contact">
+              <PropertyRef Name="staff_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PROJECT__EXECUTE_STAFF">
+          <End Role="staff" Type="Self.staff" Multiplicity="1" />
+          <End Role="project_money_flow" Type="Self.project_money_flow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="staff">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="project_money_flow">
+              <PropertyRef Name="staff_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PROJECT__POSSESS_PROJECT">
+          <End Role="project" Type="Self.project" Multiplicity="1" />
+          <End Role="project_money_flow" Type="Self.project_money_flow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="project">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="project_money_flow">
+              <PropertyRef Name="project_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PROJECT_CONTAIN_CONTACT">
+          <End Role="contact" Type="Self.contact" Multiplicity="0..1" />
+          <End Role="project" Type="Self.project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="contact">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="project">
+              <PropertyRef Name="contact_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_R_PROJEC_R_PROJECT_PROJECT">
+          <End Role="project" Type="Self.project" Multiplicity="1" />
+          <End Role="r_project_staff" Type="Self.r_project_staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="project">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="r_project_staff">
+              <PropertyRef Name="project_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_R_PROJEC_R_PROJECT_STAFF">
+          <End Role="staff" Type="Self.staff" Multiplicity="1" />
+          <End Role="r_project_staff" Type="Self.r_project_staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="staff">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="r_project_staff">
+              <PropertyRef Name="staff_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BPMSxModelStoreContainer">
+          <EntitySet Name="contact" EntityType="Self.contact" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="project" EntityType="Self.project" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="project_money_flow" EntityType="Self.project_money_flow" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="r_project_staff" EntityType="Self.r_project_staff" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="staff" EntityType="Self.staff" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CONTACT_ACCEPT_STAFF" Association="Self.FK_CONTACT_ACCEPT_STAFF">
+            <End Role="staff" EntitySet="staff" />
+            <End Role="contact" EntitySet="contact" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROJECT__EXECUTE_STAFF" Association="Self.FK_PROJECT__EXECUTE_STAFF">
+            <End Role="staff" EntitySet="staff" />
+            <End Role="project_money_flow" EntitySet="project_money_flow" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROJECT__POSSESS_PROJECT" Association="Self.FK_PROJECT__POSSESS_PROJECT">
+            <End Role="project" EntitySet="project" />
+            <End Role="project_money_flow" EntitySet="project_money_flow" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROJECT_CONTAIN_CONTACT" Association="Self.FK_PROJECT_CONTAIN_CONTACT">
+            <End Role="contact" EntitySet="contact" />
+            <End Role="project" EntitySet="project" />
+          </AssociationSet>
+          <AssociationSet Name="FK_R_PROJEC_R_PROJECT_PROJECT" Association="Self.FK_R_PROJEC_R_PROJECT_PROJECT">
+            <End Role="project" EntitySet="project" />
+            <End Role="r_project_staff" EntitySet="r_project_staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_R_PROJEC_R_PROJECT_STAFF" Association="Self.FK_R_PROJEC_R_PROJECT_STAFF">
+            <End Role="staff" EntitySet="staff" />
+            <End Role="r_project_staff" EntitySet="r_project_staff" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BPMSxModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="contact">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="String" MaxLength="32" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="staff_id" Type="String" MaxLength="32" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="contact_id" Type="String" MaxLength="13" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="contact_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="contact_amount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="delegation_client" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="accept_way" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="is_corporation_signed" Type="Boolean" Nullable="false" />
+          <Property Name="is_client_signed" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="staff" Relationship="Self.FK_CONTACT_ACCEPT_STAFF" FromRole="contact" ToRole="staff" />
+          <NavigationProperty Name="project" Relationship="Self.FK_PROJECT_CONTAIN_CONTACT" FromRole="contact" ToRole="project" />
+        </EntityType>
+        <EntityType Name="project">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="String" MaxLength="32" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="contact_id" Type="String" MaxLength="32" FixedLength="true" Unicode="false" />
+          <Property Name="project_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="standard_product_value" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="enter_date" Type="DateTime" Precision="3" />
+          <Property Name="exit_date" Type="DateTime" Precision="3" />
+          <Property Name="is_approved" Type="Boolean" Nullable="false" />
+          <Property Name="approved_datatime" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="contact" Relationship="Self.FK_PROJECT_CONTAIN_CONTACT" FromRole="project" ToRole="contact" />
+          <NavigationProperty Name="project_money_flow" Relationship="Self.FK_PROJECT__POSSESS_PROJECT" FromRole="project" ToRole="project_money_flow" />
+          <NavigationProperty Name="r_project_staff" Relationship="Self.FK_R_PROJEC_R_PROJECT_PROJECT" FromRole="project" ToRole="r_project_staff" />
+        </EntityType>
+        <EntityType Name="project_money_flow">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="String" MaxLength="32" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="staff_id" Type="String" MaxLength="32" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="project_id" Type="String" MaxLength="32" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="fund_flow_datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="expense" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="invoice_amount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="income_amout" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="project" Relationship="Self.FK_PROJECT__POSSESS_PROJECT" FromRole="project_money_flow" ToRole="project" />
+          <NavigationProperty Name="staff" Relationship="Self.FK_PROJECT__EXECUTE_STAFF" FromRole="project_money_flow" ToRole="staff" />
+        </EntityType>
+        <EntityType Name="r_project_staff">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="String" MaxLength="32" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="project_id" Type="String" MaxLength="32" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="staff_id" Type="String" MaxLength="32" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="is_scene" Type="Boolean" Nullable="false" />
+          <Property Name="is_scheme" Type="Boolean" Nullable="false" />
+          <Property Name="is_report" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="project" Relationship="Self.FK_R_PROJEC_R_PROJECT_PROJECT" FromRole="r_project_staff" ToRole="project" />
+          <NavigationProperty Name="staff" Relationship="Self.FK_R_PROJEC_R_PROJECT_STAFF" FromRole="r_project_staff" ToRole="staff" />
+        </EntityType>
+        <EntityType Name="staff">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="String" MaxLength="32" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="staff_no" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="staff_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="gender" Type="Boolean" Nullable="false" />
+          <Property Name="phone_number" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="position" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="contact" Relationship="Self.FK_CONTACT_ACCEPT_STAFF" FromRole="staff" ToRole="contact" />
+          <NavigationProperty Name="project_money_flow" Relationship="Self.FK_PROJECT__EXECUTE_STAFF" FromRole="staff" ToRole="project_money_flow" />
+          <NavigationProperty Name="r_project_staff" Relationship="Self.FK_R_PROJEC_R_PROJECT_STAFF" FromRole="staff" ToRole="r_project_staff" />
+        </EntityType>
+        <Association Name="FK_CONTACT_ACCEPT_STAFF">
+          <End Role="staff" Type="Self.staff" Multiplicity="1" />
+          <End Role="contact" Type="Self.contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="staff">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="contact">
+              <PropertyRef Name="staff_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PROJECT_CONTAIN_CONTACT">
+          <End Role="contact" Type="Self.contact" Multiplicity="0..1" />
+          <End Role="project" Type="Self.project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="contact">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="project">
+              <PropertyRef Name="contact_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PROJECT__POSSESS_PROJECT">
+          <End Role="project" Type="Self.project" Multiplicity="1" />
+          <End Role="project_money_flow" Type="Self.project_money_flow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="project">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="project_money_flow">
+              <PropertyRef Name="project_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_R_PROJEC_R_PROJECT_PROJECT">
+          <End Role="project" Type="Self.project" Multiplicity="1" />
+          <End Role="r_project_staff" Type="Self.r_project_staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="project">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="r_project_staff">
+              <PropertyRef Name="project_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PROJECT__EXECUTE_STAFF">
+          <End Role="staff" Type="Self.staff" Multiplicity="1" />
+          <End Role="project_money_flow" Type="Self.project_money_flow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="staff">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="project_money_flow">
+              <PropertyRef Name="staff_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_R_PROJEC_R_PROJECT_STAFF">
+          <End Role="staff" Type="Self.staff" Multiplicity="1" />
+          <End Role="r_project_staff" Type="Self.r_project_staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="staff">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="r_project_staff">
+              <PropertyRef Name="staff_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BPMSxEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="contact" EntityType="Self.contact" />
+          <EntitySet Name="project" EntityType="Self.project" />
+          <EntitySet Name="project_money_flow" EntityType="Self.project_money_flow" />
+          <EntitySet Name="r_project_staff" EntityType="Self.r_project_staff" />
+          <EntitySet Name="staff" EntityType="Self.staff" />
+          <AssociationSet Name="FK_CONTACT_ACCEPT_STAFF" Association="Self.FK_CONTACT_ACCEPT_STAFF">
+            <End Role="staff" EntitySet="staff" />
+            <End Role="contact" EntitySet="contact" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROJECT_CONTAIN_CONTACT" Association="Self.FK_PROJECT_CONTAIN_CONTACT">
+            <End Role="contact" EntitySet="contact" />
+            <End Role="project" EntitySet="project" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROJECT__POSSESS_PROJECT" Association="Self.FK_PROJECT__POSSESS_PROJECT">
+            <End Role="project" EntitySet="project" />
+            <End Role="project_money_flow" EntitySet="project_money_flow" />
+          </AssociationSet>
+          <AssociationSet Name="FK_R_PROJEC_R_PROJECT_PROJECT" Association="Self.FK_R_PROJEC_R_PROJECT_PROJECT">
+            <End Role="project" EntitySet="project" />
+            <End Role="r_project_staff" EntitySet="r_project_staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROJECT__EXECUTE_STAFF" Association="Self.FK_PROJECT__EXECUTE_STAFF">
+            <End Role="staff" EntitySet="staff" />
+            <End Role="project_money_flow" EntitySet="project_money_flow" />
+          </AssociationSet>
+          <AssociationSet Name="FK_R_PROJEC_R_PROJECT_STAFF" Association="Self.FK_R_PROJEC_R_PROJECT_STAFF">
+            <End Role="staff" EntitySet="staff" />
+            <End Role="r_project_staff" EntitySet="r_project_staff" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BPMSxModelStoreContainer" CdmEntityContainer="BPMSxEntities">
+          <EntitySetMapping Name="contact">
+            <EntityTypeMapping TypeName="BPMSxModel.contact">
+              <MappingFragment StoreEntitySet="contact">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="staff_id" ColumnName="staff_id" />
+                <ScalarProperty Name="contact_id" ColumnName="contact_id" />
+                <ScalarProperty Name="contact_name" ColumnName="contact_name" />
+                <ScalarProperty Name="contact_amount" ColumnName="contact_amount" />
+                <ScalarProperty Name="delegation_client" ColumnName="delegation_client" />
+                <ScalarProperty Name="accept_way" ColumnName="accept_way" />
+                <ScalarProperty Name="is_corporation_signed" ColumnName="is_corporation_signed" />
+                <ScalarProperty Name="is_client_signed" ColumnName="is_client_signed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="project">
+            <EntityTypeMapping TypeName="BPMSxModel.project">
+              <MappingFragment StoreEntitySet="project">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="contact_id" ColumnName="contact_id" />
+                <ScalarProperty Name="project_name" ColumnName="project_name" />
+                <ScalarProperty Name="standard_product_value" ColumnName="standard_product_value" />
+                <ScalarProperty Name="enter_date" ColumnName="enter_date" />
+                <ScalarProperty Name="exit_date" ColumnName="exit_date" />
+                <ScalarProperty Name="is_approved" ColumnName="is_approved" />
+                <ScalarProperty Name="approved_datatime" ColumnName="approved_datatime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="project_money_flow">
+            <EntityTypeMapping TypeName="BPMSxModel.project_money_flow">
+              <MappingFragment StoreEntitySet="project_money_flow">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="staff_id" ColumnName="staff_id" />
+                <ScalarProperty Name="project_id" ColumnName="project_id" />
+                <ScalarProperty Name="fund_flow_datetime" ColumnName="fund_flow_datetime" />
+                <ScalarProperty Name="expense" ColumnName="expense" />
+                <ScalarProperty Name="invoice_amount" ColumnName="invoice_amount" />
+                <ScalarProperty Name="income_amout" ColumnName="income_amout" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="r_project_staff">
+            <EntityTypeMapping TypeName="BPMSxModel.r_project_staff">
+              <MappingFragment StoreEntitySet="r_project_staff">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="project_id" ColumnName="project_id" />
+                <ScalarProperty Name="staff_id" ColumnName="staff_id" />
+                <ScalarProperty Name="is_scene" ColumnName="is_scene" />
+                <ScalarProperty Name="is_scheme" ColumnName="is_scheme" />
+                <ScalarProperty Name="is_report" ColumnName="is_report" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="staff">
+            <EntityTypeMapping TypeName="BPMSxModel.staff">
+              <MappingFragment StoreEntitySet="staff">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="staff_no" ColumnName="staff_no" />
+                <ScalarProperty Name="staff_name" ColumnName="staff_name" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+                <ScalarProperty Name="position" ColumnName="position" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

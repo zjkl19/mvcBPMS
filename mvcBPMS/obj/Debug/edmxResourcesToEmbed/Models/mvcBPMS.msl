@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BPMSxModelStoreContainer" CdmEntityContainer="BPMSxEntities">
+    <EntitySetMapping Name="contact">
+      <EntityTypeMapping TypeName="BPMSxModel.contact">
+        <MappingFragment StoreEntitySet="contact">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="staff_id" ColumnName="staff_id" />
+          <ScalarProperty Name="contact_id" ColumnName="contact_id" />
+          <ScalarProperty Name="contact_name" ColumnName="contact_name" />
+          <ScalarProperty Name="contact_amount" ColumnName="contact_amount" />
+          <ScalarProperty Name="delegation_client" ColumnName="delegation_client" />
+          <ScalarProperty Name="accept_way" ColumnName="accept_way" />
+          <ScalarProperty Name="is_corporation_signed" ColumnName="is_corporation_signed" />
+          <ScalarProperty Name="is_client_signed" ColumnName="is_client_signed" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="project">
+      <EntityTypeMapping TypeName="BPMSxModel.project">
+        <MappingFragment StoreEntitySet="project">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="contact_id" ColumnName="contact_id" />
+          <ScalarProperty Name="project_name" ColumnName="project_name" />
+          <ScalarProperty Name="standard_product_value" ColumnName="standard_product_value" />
+          <ScalarProperty Name="enter_date" ColumnName="enter_date" />
+          <ScalarProperty Name="exit_date" ColumnName="exit_date" />
+          <ScalarProperty Name="is_approved" ColumnName="is_approved" />
+          <ScalarProperty Name="approved_datatime" ColumnName="approved_datatime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="project_money_flow">
+      <EntityTypeMapping TypeName="BPMSxModel.project_money_flow">
+        <MappingFragment StoreEntitySet="project_money_flow">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="staff_id" ColumnName="staff_id" />
+          <ScalarProperty Name="project_id" ColumnName="project_id" />
+          <ScalarProperty Name="fund_flow_datetime" ColumnName="fund_flow_datetime" />
+          <ScalarProperty Name="expense" ColumnName="expense" />
+          <ScalarProperty Name="invoice_amount" ColumnName="invoice_amount" />
+          <ScalarProperty Name="income_amout" ColumnName="income_amout" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="r_project_staff">
+      <EntityTypeMapping TypeName="BPMSxModel.r_project_staff">
+        <MappingFragment StoreEntitySet="r_project_staff">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="project_id" ColumnName="project_id" />
+          <ScalarProperty Name="staff_id" ColumnName="staff_id" />
+          <ScalarProperty Name="is_scene" ColumnName="is_scene" />
+          <ScalarProperty Name="is_scheme" ColumnName="is_scheme" />
+          <ScalarProperty Name="is_report" ColumnName="is_report" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="staff">
+      <EntityTypeMapping TypeName="BPMSxModel.staff">
+        <MappingFragment StoreEntitySet="staff">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="staff_no" ColumnName="staff_no" />
+          <ScalarProperty Name="staff_name" ColumnName="staff_name" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+          <ScalarProperty Name="position" ColumnName="position" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
