@@ -1,0 +1,73 @@
+﻿@model IEnumerable<mvcBPMS.Models.staff>
+
+@{
+    ViewBag.Title = "QueryStaff";
+}
+
+<h2>QueryStaff</h2>
+
+@using (Html.BeginForm("QueryStaff", "Staff", FormMethod.Post))
+{
+    @Html.Label("staff_no", "工号")
+    @Html.TextBox("staff_no")
+    <br />
+    <input type="submit" value="查询" />
+}
+<br />
+工号 @ViewBag.staff_no 职工详细信息如下：
+<br />
+
+<table class="table">
+    <tr>
+        <th>
+            工号
+        </th>
+
+        <th>
+            姓名
+        </th>
+        <th>
+            性别
+        </th>
+        <th>
+            办公电话
+        </th>
+        <th>
+            移动电话
+        </th>
+        <th>
+            职位
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.staff_no)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.staff_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.gender)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.office_phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mobile_phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.position)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

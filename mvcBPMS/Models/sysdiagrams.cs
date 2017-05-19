@@ -12,17 +12,12 @@ namespace mvcBPMS.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class project_money_flow
+    public partial class sysdiagrams
     {
-        public string id { get; set; }
-        public string staff_id { get; set; }
-        public string project_id { get; set; }
-        public System.DateTime fund_flow_datetime { get; set; }
-        public decimal expense { get; set; }
-        public decimal invoice_amount { get; set; }
-        public decimal income_amout { get; set; }
-    
-        public virtual project project { get; set; }
-        public virtual staff staff { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

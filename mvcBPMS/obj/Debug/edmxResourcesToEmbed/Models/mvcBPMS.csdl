@@ -6,15 +6,28 @@
     </Key>
     <Property Name="id" Type="String" MaxLength="32" FixedLength="true" Unicode="false" Nullable="false" />
     <Property Name="staff_id" Type="String" MaxLength="32" FixedLength="true" Unicode="false" Nullable="false" />
-    <Property Name="contact_id" Type="String" MaxLength="13" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="contact_no" Type="String" MaxLength="13" FixedLength="true" Unicode="false" Nullable="false" />
     <Property Name="contact_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="contact_amount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="contact_signing_data" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="contact_deadline" Type="Int64" Nullable="false" />
     <Property Name="delegation_client" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="dlg_contactperson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="dlg_contactperson_phone" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
     <Property Name="accept_way" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
     <Property Name="is_corporation_signed" Type="Boolean" Nullable="false" />
     <Property Name="is_client_signed" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="staff" Relationship="Self.FK_CONTACT_ACCEPT_STAFF" FromRole="contact" ToRole="staff" />
     <NavigationProperty Name="project" Relationship="Self.FK_PROJECT_CONTAIN_CONTACT" FromRole="contact" ToRole="project" />
+  </EntityType>
+  <EntityType Name="prj_complex_coff">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="String" MaxLength="32" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="prj_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="complex_coff" Type="Double" Nullable="false" />
+    <NavigationProperty Name="project_system" Relationship="Self.FK_PROJECT__HAVE2_PRJ_COMP" FromRole="prj_complex_coff" ToRole="project_system" />
   </EntityType>
   <EntityType Name="project">
     <Key>
@@ -23,14 +36,36 @@
     <Property Name="id" Type="String" MaxLength="32" FixedLength="true" Unicode="false" Nullable="false" />
     <Property Name="contact_id" Type="String" MaxLength="32" FixedLength="true" Unicode="false" />
     <Property Name="project_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="standard_product_value" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="standard_product_value" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
     <Property Name="enter_date" Type="DateTime" Precision="3" />
     <Property Name="exit_date" Type="DateTime" Precision="3" />
-    <Property Name="is_approved" Type="Boolean" Nullable="false" />
-    <Property Name="approved_datatime" Type="Boolean" Nullable="false" />
+    <Property Name="approved_datatime" Type="DateTime" Precision="3" />
     <NavigationProperty Name="contact" Relationship="Self.FK_PROJECT_CONTAIN_CONTACT" FromRole="project" ToRole="contact" />
+    <NavigationProperty Name="project_system" Relationship="Self.FK_PROJECT__HAVE_PROJECT" FromRole="project" ToRole="project_system" />
     <NavigationProperty Name="project_money_flow" Relationship="Self.FK_PROJECT__POSSESS_PROJECT" FromRole="project" ToRole="project_money_flow" />
     <NavigationProperty Name="r_project_staff" Relationship="Self.FK_R_PROJEC_R_PROJECT_PROJECT" FromRole="project" ToRole="r_project_staff" />
+  </EntityType>
+  <EntityType Name="project_diffcult_coff">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="String" MaxLength="32" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="prj_diffculty_type" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="diffcult_coff" Type="Double" Nullable="false" />
+    <NavigationProperty Name="project_system" Relationship="Self.FK_PROJECT__HAVE1_PROJECT_" FromRole="project_diffcult_coff" ToRole="project_system" />
+  </EntityType>
+  <EntityType Name="project_fund__allocation">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="String" MaxLength="32" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="prj_allocation_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="scene" Type="Double" />
+    <Property Name="plan" Type="Double" />
+    <Property Name="report" Type="Double" />
+    <Property Name="check" Type="Double" />
+    <Property Name="others" Type="Double" />
+    <NavigationProperty Name="project_system" Relationship="Self.FK_PROJECT__HAVE3_PROJECT_" FromRole="project_fund__allocation" ToRole="project_system" />
   </EntityType>
   <EntityType Name="project_money_flow">
     <Key>
@@ -42,9 +77,23 @@
     <Property Name="fund_flow_datetime" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="expense" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
     <Property Name="invoice_amount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-    <Property Name="income_amout" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="income_amout" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
     <NavigationProperty Name="project" Relationship="Self.FK_PROJECT__POSSESS_PROJECT" FromRole="project_money_flow" ToRole="project" />
     <NavigationProperty Name="staff" Relationship="Self.FK_PROJECT__EXECUTE_STAFF" FromRole="project_money_flow" ToRole="staff" />
+  </EntityType>
+  <EntityType Name="project_system">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="String" MaxLength="32" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="project_fund__allocation_id" Type="String" MaxLength="32" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="prj_complex_coff_id" Type="String" MaxLength="32" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="project_id" Type="String" MaxLength="32" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="project_diffcult_coff_id" Type="String" MaxLength="32" FixedLength="true" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="prj_complex_coff" Relationship="Self.FK_PROJECT__HAVE2_PRJ_COMP" FromRole="project_system" ToRole="prj_complex_coff" />
+    <NavigationProperty Name="project" Relationship="Self.FK_PROJECT__HAVE_PROJECT" FromRole="project_system" ToRole="project" />
+    <NavigationProperty Name="project_diffcult_coff" Relationship="Self.FK_PROJECT__HAVE1_PROJECT_" FromRole="project_system" ToRole="project_diffcult_coff" />
+    <NavigationProperty Name="project_fund__allocation" Relationship="Self.FK_PROJECT__HAVE3_PROJECT_" FromRole="project_system" ToRole="project_fund__allocation" />
   </EntityType>
   <EntityType Name="r_project_staff">
     <Key>
@@ -53,9 +102,12 @@
     <Property Name="id" Type="String" MaxLength="32" FixedLength="true" Unicode="false" Nullable="false" />
     <Property Name="project_id" Type="String" MaxLength="32" FixedLength="true" Unicode="false" Nullable="false" />
     <Property Name="staff_id" Type="String" MaxLength="32" FixedLength="true" Unicode="false" Nullable="false" />
-    <Property Name="is_scene" Type="Boolean" Nullable="false" />
-    <Property Name="is_scheme" Type="Boolean" Nullable="false" />
-    <Property Name="is_report" Type="Boolean" Nullable="false" />
+    <Property Name="is_response" Type="Boolean" Nullable="false" />
+    <Property Name="scene_coff" Type="Double" Nullable="false" />
+    <Property Name="plan_coff" Type="Double" Nullable="false" />
+    <Property Name="report_coff" Type="Double" Nullable="false" />
+    <Property Name="report_check_coff" Type="Double" Nullable="false" />
+    <Property Name="others_coff" Type="Double" Nullable="false" />
     <NavigationProperty Name="project" Relationship="Self.FK_R_PROJEC_R_PROJECT_PROJECT" FromRole="r_project_staff" ToRole="project" />
     <NavigationProperty Name="staff" Relationship="Self.FK_R_PROJEC_R_PROJECT_STAFF" FromRole="r_project_staff" ToRole="staff" />
   </EntityType>
@@ -65,13 +117,25 @@
     </Key>
     <Property Name="id" Type="String" MaxLength="32" FixedLength="true" Unicode="false" Nullable="false" />
     <Property Name="staff_no" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="staff_password" Type="String" MaxLength="32" FixedLength="true" Unicode="false" Nullable="false" />
     <Property Name="staff_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="gender" Type="Boolean" Nullable="false" />
-    <Property Name="phone_number" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="office_phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="mobile_phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="position" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="contact" Relationship="Self.FK_CONTACT_ACCEPT_STAFF" FromRole="staff" ToRole="contact" />
     <NavigationProperty Name="project_money_flow" Relationship="Self.FK_PROJECT__EXECUTE_STAFF" FromRole="staff" ToRole="project_money_flow" />
     <NavigationProperty Name="r_project_staff" Relationship="Self.FK_R_PROJEC_R_PROJECT_STAFF" FromRole="staff" ToRole="r_project_staff" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
   <Association Name="FK_CONTACT_ACCEPT_STAFF">
     <End Role="staff" Type="Self.staff" Multiplicity="1" />
@@ -97,6 +161,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_PROJECT__HAVE2_PRJ_COMP">
+    <End Role="prj_complex_coff" Type="Self.prj_complex_coff" Multiplicity="1" />
+    <End Role="project_system" Type="Self.project_system" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="prj_complex_coff">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="project_system">
+        <PropertyRef Name="prj_complex_coff_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PROJECT__HAVE_PROJECT">
+    <End Role="project" Type="Self.project" Multiplicity="1" />
+    <End Role="project_system" Type="Self.project_system" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="project">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="project_system">
+        <PropertyRef Name="project_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_PROJECT__POSSESS_PROJECT">
     <End Role="project" Type="Self.project" Multiplicity="1" />
     <End Role="project_money_flow" Type="Self.project_money_flow" Multiplicity="*" />
@@ -118,6 +206,30 @@
       </Principal>
       <Dependent Role="r_project_staff">
         <PropertyRef Name="project_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PROJECT__HAVE1_PROJECT_">
+    <End Role="project_diffcult_coff" Type="Self.project_diffcult_coff" Multiplicity="1" />
+    <End Role="project_system" Type="Self.project_system" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="project_diffcult_coff">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="project_system">
+        <PropertyRef Name="project_diffcult_coff_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PROJECT__HAVE3_PROJECT_">
+    <End Role="project_fund__allocation" Type="Self.project_fund__allocation" Multiplicity="1" />
+    <End Role="project_system" Type="Self.project_system" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="project_fund__allocation">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="project_system">
+        <PropertyRef Name="project_fund__allocation_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -147,10 +259,15 @@
   </Association>
   <EntityContainer Name="BPMSxEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="contact" EntityType="Self.contact" />
+    <EntitySet Name="prj_complex_coff" EntityType="Self.prj_complex_coff" />
     <EntitySet Name="project" EntityType="Self.project" />
+    <EntitySet Name="project_diffcult_coff" EntityType="Self.project_diffcult_coff" />
+    <EntitySet Name="project_fund__allocation" EntityType="Self.project_fund__allocation" />
     <EntitySet Name="project_money_flow" EntityType="Self.project_money_flow" />
+    <EntitySet Name="project_system" EntityType="Self.project_system" />
     <EntitySet Name="r_project_staff" EntityType="Self.r_project_staff" />
     <EntitySet Name="staff" EntityType="Self.staff" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
     <AssociationSet Name="FK_CONTACT_ACCEPT_STAFF" Association="Self.FK_CONTACT_ACCEPT_STAFF">
       <End Role="staff" EntitySet="staff" />
       <End Role="contact" EntitySet="contact" />
@@ -159,6 +276,14 @@
       <End Role="contact" EntitySet="contact" />
       <End Role="project" EntitySet="project" />
     </AssociationSet>
+    <AssociationSet Name="FK_PROJECT__HAVE2_PRJ_COMP" Association="Self.FK_PROJECT__HAVE2_PRJ_COMP">
+      <End Role="prj_complex_coff" EntitySet="prj_complex_coff" />
+      <End Role="project_system" EntitySet="project_system" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PROJECT__HAVE_PROJECT" Association="Self.FK_PROJECT__HAVE_PROJECT">
+      <End Role="project" EntitySet="project" />
+      <End Role="project_system" EntitySet="project_system" />
+    </AssociationSet>
     <AssociationSet Name="FK_PROJECT__POSSESS_PROJECT" Association="Self.FK_PROJECT__POSSESS_PROJECT">
       <End Role="project" EntitySet="project" />
       <End Role="project_money_flow" EntitySet="project_money_flow" />
@@ -166,6 +291,14 @@
     <AssociationSet Name="FK_R_PROJEC_R_PROJECT_PROJECT" Association="Self.FK_R_PROJEC_R_PROJECT_PROJECT">
       <End Role="project" EntitySet="project" />
       <End Role="r_project_staff" EntitySet="r_project_staff" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PROJECT__HAVE1_PROJECT_" Association="Self.FK_PROJECT__HAVE1_PROJECT_">
+      <End Role="project_diffcult_coff" EntitySet="project_diffcult_coff" />
+      <End Role="project_system" EntitySet="project_system" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PROJECT__HAVE3_PROJECT_" Association="Self.FK_PROJECT__HAVE3_PROJECT_">
+      <End Role="project_fund__allocation" EntitySet="project_fund__allocation" />
+      <End Role="project_system" EntitySet="project_system" />
     </AssociationSet>
     <AssociationSet Name="FK_PROJECT__EXECUTE_STAFF" Association="Self.FK_PROJECT__EXECUTE_STAFF">
       <End Role="staff" EntitySet="staff" />

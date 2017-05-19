@@ -26,9 +26,14 @@ namespace mvcBPMS.Models
         }
     
         public virtual DbSet<contact> contact { get; set; }
+        public virtual DbSet<prj_complex_coff> prj_complex_coff { get; set; }
         public virtual DbSet<project> project { get; set; }
+        public virtual DbSet<project_diffcult_coff> project_diffcult_coff { get; set; }
+        public virtual DbSet<project_fund__allocation> project_fund__allocation { get; set; }
         public virtual DbSet<project_money_flow> project_money_flow { get; set; }
+        public virtual DbSet<project_system> project_system { get; set; }
         public virtual DbSet<r_project_staff> r_project_staff { get; set; }
         public virtual DbSet<staff> staff { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     }
 }

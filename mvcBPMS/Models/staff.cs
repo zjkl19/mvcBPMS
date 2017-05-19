@@ -24,9 +24,11 @@ namespace mvcBPMS.Models
     
         public string id { get; set; }
         public decimal staff_no { get; set; }
+        public string staff_password { get; set; }
         public string staff_name { get; set; }
         public bool gender { get; set; }
-        public string phone_number { get; set; }
+        public string office_phone { get; set; }
+        public string mobile_phone { get; set; }
         public string position { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

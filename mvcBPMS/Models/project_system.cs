@@ -12,19 +12,17 @@ namespace mvcBPMS.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class r_project_staff
+    public partial class project_system
     {
         public string id { get; set; }
+        public string project_fund__allocation_id { get; set; }
+        public string prj_complex_coff_id { get; set; }
         public string project_id { get; set; }
-        public string staff_id { get; set; }
-        public bool is_response { get; set; }
-        public double scene_coff { get; set; }
-        public double plan_coff { get; set; }
-        public double report_coff { get; set; }
-        public double report_check_coff { get; set; }
-        public double others_coff { get; set; }
+        public string project_diffcult_coff_id { get; set; }
     
+        public virtual prj_complex_coff prj_complex_coff { get; set; }
         public virtual project project { get; set; }
-        public virtual staff staff { get; set; }
+        public virtual project_diffcult_coff project_diffcult_coff { get; set; }
+        public virtual project_fund__allocation project_fund__allocation { get; set; }
     }
 }

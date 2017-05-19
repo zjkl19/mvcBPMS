@@ -9,7 +9,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{5A1A3F4A-463A-40AE-9A63-EA8CCA074DC1}</ProjectGuid>
+    <ProjectGuid>{F6BBEA5A-96F9-4EB8-93F0-4975A1DC1D51}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -199,8 +199,9 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IndexController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\projectController.cs" />
+    <Compile Include="Controllers\StaffController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -225,16 +226,31 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>mvcBPMS.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\prj_complex_coff.cs">
+      <DependentUpon>mvcBPMS.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\project.cs">
       <DependentUpon>mvcBPMS.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\project_diffcult_coff.cs">
+      <DependentUpon>mvcBPMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\project_fund__allocation.cs">
+      <DependentUpon>mvcBPMS.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\project_money_flow.cs">
+      <DependentUpon>mvcBPMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\project_system.cs">
       <DependentUpon>mvcBPMS.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\r_project_staff.cs">
       <DependentUpon>mvcBPMS.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\staff.cs">
+      <DependentUpon>mvcBPMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>mvcBPMS.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -315,9 +331,12 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\project\Index.cshtml" />
-    <Content Include="Views\project\SearchProject.cshtml" />
-    <Content Include="Views\project\ProjectDetails.cshtml" />
+    <Content Include="Views\Index\Index.cshtml" />
+    <Content Include="Views\Shared\pView.cshtml" />
+    <Content Include="Views\Staff\Index.cshtml" />
+    <Content Include="Views\Staff\AddStaff.cshtml" />
+    <Content Include="Views\Staff\ModStaff.cshtml" />
+    <Content Include="Views\Staff\QueryStaff.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -349,9 +368,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>54004</DevelopmentServerPort>
+          <DevelopmentServerPort>50814</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:54004/</IISUrl>
+          <IISUrl>http://localhost:50814/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

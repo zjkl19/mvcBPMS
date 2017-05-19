@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "AddStaff";
+}
+
+<h2>AddStaff</h2>
+
+ @using (Html.BeginForm("AddStaff", "Staff", FormMethod.Post))
+ { 
+    @Html.Label("staff_no", "工号")
+    @Html.TextBox("staff_no")
+    <br/>
+    @Html.Label("staff_password", "密码")
+    @Html.TextBox("staff_password")
+    <br/>
+    @Html.Label("staff_name", "姓名")
+    @Html.TextBox("staff_name")
+    <br/>
+    @Html.Label("gender", "性别")
+    @Html.TextBox("gender")
+    <br/>
+    @Html.Label("office_phone", "办公电话")
+    @Html.TextBox("office_phone")
+    <br/>
+    @Html.Label("mobile_phone","移动电话")
+    @Html.TextBox("mobile_phone")
+    <br/>
+    @Html.Label("position", "职位")
+    @Html.TextBox("position")
+    <br/>
+    <input type="submit" value="添加" />
+ }
+<br/>@ViewBag.message
+
+

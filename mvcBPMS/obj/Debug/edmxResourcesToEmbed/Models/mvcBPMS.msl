@@ -6,13 +6,26 @@
         <MappingFragment StoreEntitySet="contact">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="staff_id" ColumnName="staff_id" />
-          <ScalarProperty Name="contact_id" ColumnName="contact_id" />
+          <ScalarProperty Name="contact_no" ColumnName="contact_no" />
           <ScalarProperty Name="contact_name" ColumnName="contact_name" />
           <ScalarProperty Name="contact_amount" ColumnName="contact_amount" />
+          <ScalarProperty Name="contact_signing_data" ColumnName="contact_signing_data" />
+          <ScalarProperty Name="contact_deadline" ColumnName="contact_deadline" />
           <ScalarProperty Name="delegation_client" ColumnName="delegation_client" />
+          <ScalarProperty Name="dlg_contactperson" ColumnName="dlg_contactperson" />
+          <ScalarProperty Name="dlg_contactperson_phone" ColumnName="dlg_contactperson_phone" />
           <ScalarProperty Name="accept_way" ColumnName="accept_way" />
           <ScalarProperty Name="is_corporation_signed" ColumnName="is_corporation_signed" />
           <ScalarProperty Name="is_client_signed" ColumnName="is_client_signed" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="prj_complex_coff">
+      <EntityTypeMapping TypeName="BPMSxModel.prj_complex_coff">
+        <MappingFragment StoreEntitySet="prj_complex_coff">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="prj_type" ColumnName="prj_type" />
+          <ScalarProperty Name="complex_coff" ColumnName="complex_coff" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -25,8 +38,29 @@
           <ScalarProperty Name="standard_product_value" ColumnName="standard_product_value" />
           <ScalarProperty Name="enter_date" ColumnName="enter_date" />
           <ScalarProperty Name="exit_date" ColumnName="exit_date" />
-          <ScalarProperty Name="is_approved" ColumnName="is_approved" />
           <ScalarProperty Name="approved_datatime" ColumnName="approved_datatime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="project_diffcult_coff">
+      <EntityTypeMapping TypeName="BPMSxModel.project_diffcult_coff">
+        <MappingFragment StoreEntitySet="project_diffcult_coff">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="prj_diffculty_type" ColumnName="prj_diffculty_type" />
+          <ScalarProperty Name="diffcult_coff" ColumnName="diffcult_coff" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="project_fund__allocation">
+      <EntityTypeMapping TypeName="BPMSxModel.project_fund__allocation">
+        <MappingFragment StoreEntitySet="project_fund_ allocation">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="prj_allocation_type" ColumnName="prj_allocation_type" />
+          <ScalarProperty Name="scene" ColumnName="scene" />
+          <ScalarProperty Name="plan" ColumnName="plan" />
+          <ScalarProperty Name="report" ColumnName="report" />
+          <ScalarProperty Name="check" ColumnName="check" />
+          <ScalarProperty Name="others" ColumnName="others" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -43,15 +77,29 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="project_system">
+      <EntityTypeMapping TypeName="BPMSxModel.project_system">
+        <MappingFragment StoreEntitySet="project_system">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="project_fund__allocation_id" ColumnName="project_fund_ allocation_id" />
+          <ScalarProperty Name="prj_complex_coff_id" ColumnName="prj_complex_coff_id" />
+          <ScalarProperty Name="project_id" ColumnName="project_id" />
+          <ScalarProperty Name="project_diffcult_coff_id" ColumnName="project_diffcult_coff_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="r_project_staff">
       <EntityTypeMapping TypeName="BPMSxModel.r_project_staff">
         <MappingFragment StoreEntitySet="r_project_staff">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="project_id" ColumnName="project_id" />
           <ScalarProperty Name="staff_id" ColumnName="staff_id" />
-          <ScalarProperty Name="is_scene" ColumnName="is_scene" />
-          <ScalarProperty Name="is_scheme" ColumnName="is_scheme" />
-          <ScalarProperty Name="is_report" ColumnName="is_report" />
+          <ScalarProperty Name="is_response" ColumnName="is_response" />
+          <ScalarProperty Name="scene_coff" ColumnName="scene_coff" />
+          <ScalarProperty Name="plan_coff" ColumnName="plan_coff" />
+          <ScalarProperty Name="report_coff" ColumnName="report_coff" />
+          <ScalarProperty Name="report_check_coff" ColumnName="report_check_coff" />
+          <ScalarProperty Name="others_coff" ColumnName="others_coff" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -60,10 +108,23 @@
         <MappingFragment StoreEntitySet="staff">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="staff_no" ColumnName="staff_no" />
+          <ScalarProperty Name="staff_password" ColumnName="staff_password" />
           <ScalarProperty Name="staff_name" ColumnName="staff_name" />
           <ScalarProperty Name="gender" ColumnName="gender" />
-          <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+          <ScalarProperty Name="office_phone" ColumnName="office_phone" />
+          <ScalarProperty Name="mobile_phone" ColumnName="mobile_phone" />
           <ScalarProperty Name="position" ColumnName="position" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="BPMSxModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

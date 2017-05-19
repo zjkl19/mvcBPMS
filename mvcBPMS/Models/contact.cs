@@ -22,10 +22,14 @@ namespace mvcBPMS.Models
     
         public string id { get; set; }
         public string staff_id { get; set; }
-        public string contact_id { get; set; }
+        public string contact_no { get; set; }
         public string contact_name { get; set; }
         public decimal contact_amount { get; set; }
+        public System.DateTime contact_signing_data { get; set; }
+        public long contact_deadline { get; set; }
         public string delegation_client { get; set; }
+        public string dlg_contactperson { get; set; }
+        public string dlg_contactperson_phone { get; set; }
         public string accept_way { get; set; }
         public bool is_corporation_signed { get; set; }
         public bool is_client_signed { get; set; }

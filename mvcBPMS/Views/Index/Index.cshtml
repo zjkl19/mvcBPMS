@@ -1,0 +1,107 @@
+﻿@model IEnumerable<mvcBPMS.Models.contact>
+
+@{
+    ViewBag.Title = "Index";
+    //Layout = null;
+}
+<div>
+   @*@Html.Partial("~/Views/Shared/pView.cshtml")*@ 
+    
+</div>
+
+<h2>Index</h2>
+
+@*
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+    *@
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.contact_no)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.contact_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.contact_amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.contact_signing_data)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.contact_deadline)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.delegation_client)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dlg_contactperson)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dlg_contactperson_phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.accept_way)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.is_corporation_signed)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.is_client_signed)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.staff.staff_password)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.contact_no)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.contact_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.contact_amount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.contact_signing_data)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.contact_deadline)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.delegation_client)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dlg_contactperson)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dlg_contactperson_phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.accept_way)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.is_corporation_signed)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.is_client_signed)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.staff.staff_password)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

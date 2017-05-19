@@ -17,6 +17,7 @@ namespace mvcBPMS.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public project()
         {
+            this.project_system = new HashSet<project_system>();
             this.project_money_flow = new HashSet<project_money_flow>();
             this.r_project_staff = new HashSet<r_project_staff>();
         }
@@ -24,13 +25,14 @@ namespace mvcBPMS.Models
         public string id { get; set; }
         public string contact_id { get; set; }
         public string project_name { get; set; }
-        public Nullable<decimal> standard_product_value { get; set; }
+        public decimal standard_product_value { get; set; }
         public Nullable<System.DateTime> enter_date { get; set; }
         public Nullable<System.DateTime> exit_date { get; set; }
-        public bool is_approved { get; set; }
-        public bool approved_datatime { get; set; }
+        public Nullable<System.DateTime> approved_datatime { get; set; }
     
         public virtual contact contact { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<project_system> project_system { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<project_money_flow> project_money_flow { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
