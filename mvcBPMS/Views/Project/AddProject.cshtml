@@ -1,0 +1,33 @@
+﻿@model mvcBPMS.Models.project
+
+@{
+    ViewBag.Title = "AddProject";
+}
+
+<h2>AddProject</h2>
+
+@using (Html.BeginForm("AddProject", "Project", FormMethod.Post))
+{
+    @Html.Label("contact_no", "关联合同编号")
+    @Html.TextBox("contact_no")
+    <br />
+    @Html.Label("project_name", "项目名称")
+    @Html.TextBox("project_name")
+    <br />
+    @Html.Label("standard_product_value", "标准产值")
+    @Html.TextBox("standard_product_value")
+    <br />
+    @Html.Label("enter_data", "进场日期")
+    @Html.TextBox("enter_data")
+    <br />
+    @Html.Label("exit_data", "退场日期")
+    @Html.TextBox("exit_data")
+    <br />
+    @Html.Label("approved_datatime", "批准日期")
+    @Html.TextBox("approved_datatime")
+    <br />
+    <input type="submit" value="添加" />
+
+}
+<br />@ViewBag.message
+
