@@ -22,14 +22,23 @@ namespace mvcBPMS.Controllers
             return View(data);
         }
 
+        /// <summary>
+        /// 职工信息查询
+        /// </summary>
         public ActionResult QueryStaff()
         {
-            Models.BPMSxEntities db = new Models.BPMSxEntities();
-
-            var query = from q in db.staff
-                       select q;
-            return View(query);
+            //Models.BPMSxEntities db = new Models.BPMSxEntities();
+            //var query = from q in db.staff
+            //           select q;
+            //return View(query);
+            ViewBag.query = 0;
+            return View();
         }
+        /// <summary>
+        /// 列出指定工号的职工信息
+        /// </summary>
+        /// <param name="fc">页面表单元素的数据</param>
+        /// <returns>指定工号的staff数据</returns>
         [HttpPost]
         //FormCollection form
         //public ActionResult QueryStaff(int staff_no)
@@ -44,6 +53,7 @@ namespace mvcBPMS.Controllers
                         select q;
 
             ViewBag.staff_no = staff_no;
+            ViewBag.query = 1;
 
             return View(query);
         }
@@ -54,7 +64,10 @@ namespace mvcBPMS.Controllers
             
             return View();
         }
-
+        /// <summary>
+        /// 添加职工信息
+        /// </summary>
+        /// <param name="fc">页面表单元素的数据</param>
         [HttpPost]
         //public ActionResult AddStaff(int staff_no,string staff_password,string staff_name,string gender,string office_phone,string mobile_phone,string position)
         public ActionResult AddStaff(FormCollection fc)
@@ -130,7 +143,10 @@ namespace mvcBPMS.Controllers
 
             return View();
         }
-
+        /// <summary>
+        /// 修改指定工号的职工信息
+        /// </summary>
+        /// <param name="fc">页面表单元素的数据</param>
         [HttpPost]
         //public ActionResult ModStaff(int staff_no, string staff_password, string staff_name, string gender, string office_phone, string mobile_phone, string position)
         public ActionResult ModStaff(FormCollection fc)

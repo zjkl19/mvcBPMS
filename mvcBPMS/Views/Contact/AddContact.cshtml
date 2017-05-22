@@ -1,0 +1,50 @@
+﻿@model mvcBPMS.Models.contact
+
+@{
+    ViewBag.Title = "AddContact";
+}
+
+<h2>AddContact</h2>
+
+@using (Html.BeginForm("AddContact", "Contact", FormMethod.Post))
+{
+    @Html.Label("contact_no", "合同编号")
+    @Html.TextBox("contact_no")
+    <br />
+    @Html.Label("contact_name", "合同名称")
+    @Html.TextBox("contact_name")
+    <br />
+    @Html.Label("contact_amount", "合同金额")
+    @Html.TextBox("contact_amount")
+    <br />
+    @Html.Label("contact_signing_data", "合同签订日期")
+    @Html.TextBox("contact_signing_data")
+    <br />
+    @Html.Label("contact_deadline", "合同期限")
+    @Html.TextBox("contact_deadline")
+    <br />
+    @Html.Label("delegation_client", "委托单位")
+    @Html.TextBox("delegation_client")
+    <br />
+    @Html.Label("dlg_contactperson", "委托单位联系人")
+    @Html.TextBox("dlg_contactperson")
+    <br />
+    @Html.Label("dlg_contactperson_phone", "委托单位联系人电话")
+    @Html.TextBox("dlg_contactperson_phone")
+    <br />
+    @Html.Label("staff_no", "承接人工号")
+    @Html.TextBox("staff_no")
+    <br />
+    @Html.Label("accept_way", "承接方式")
+    @Html.TextBox("accept_way")
+    <br />
+    @Html.Label("is_corporation_signed", "单位是否签订")
+    @Html.TextBox("is_corporation_signed")
+    <br />
+    @Html.Label("is_client_signed", "客户是否签订")
+    @Html.TextBox("is_client_signed")
+    <br />
+
+    <input type="submit" value="添加" />
+}
+<br />@ViewBag.message

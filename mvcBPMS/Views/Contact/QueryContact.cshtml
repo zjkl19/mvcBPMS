@@ -1,0 +1,115 @@
+﻿@model IEnumerable<mvcBPMS.Models.contact>
+
+@{
+    ViewBag.Title = "QueryContact";
+}
+
+<h2>QueryContact</h2>
+
+@using (Html.BeginForm("QueryContact", "Contact", FormMethod.Post))
+{
+    @Html.Label("contact_no", "合同编号")
+    @Html.TextBox("contact_no")
+    <br />
+    @*
+    @Html.Label("contact_name", "合同名称")
+    @Html.TextBox("contact_name")
+    <br />
+    @Html.Label("合同签订日期")
+    @Html.Label(" 晚于")
+    @Html.Label("contact_signing_data1", "合同签订日期")
+    @Html.TextBox("contact_signing_data1")
+    <br />
+    *@
+    <input type="submit" value="查询" />
+}
+
+@if (ViewBag.query != 0)
+{
+    <br />
+        <p>合同编号 @ViewBag.contact_no 的合同详细信息如下：</p>
+    <br />
+<table class="table">
+    <tr>
+        <th>
+            合同编号
+        </th>
+        <th>
+            合同名称
+        </th>
+        <th>
+            合同金额
+        </th>
+        <th>
+            合同签订日期
+        </th>
+        <th>
+            合同期限
+        </th>
+        <th>
+            委托单位
+        </th>
+        <th>
+            委托单位联系人
+        </th>
+        <th>
+            委托单位联系人电话
+        </th>
+        <th>
+            承接方式
+        </th>
+        <th>
+            单位是否签订
+        </th>
+        <th>
+           客户是否签订
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.contact_no)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.contact_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.contact_amount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.contact_signing_data)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.contact_deadline)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.delegation_client)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dlg_contactperson)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dlg_contactperson_phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.accept_way)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.is_corporation_signed)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.is_client_signed)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.id })
+        </td>
+    </tr>
+}
+
+</table>
+}
