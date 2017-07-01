@@ -80,3 +80,14 @@ D:\vsProjects\mvcBPMS\mvcBPMS\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 D:\vsProjects\mvcBPMS\mvcBPMS\obj\Debug\mvcBPMS.csprojResolveAssemblyReference.cache
 D:\vsProjects\mvcBPMS\mvcBPMS\obj\Debug\mvcBPMS.dll
 D:\vsProjects\mvcBPMS\mvcBPMS\obj\Debug\mvcBPMS.pdb
+D:\vsProjects\mvcBPMS\mvcBPMS\bin\Ninject.dll
+D:\vsProjects\mvcBPMS\mvcBPMS\bin\Ninject.Web.Common.dll
+D:\vsProjects\mvcBPMS\mvcBPMS\bin\Ninject.Web.Mvc.dll
+D:\vsProjects\mvcBPMS\mvcBPMS\bin\WebActivatorEx.dll
+D:\vsProjects\mvcBPMS\mvcBPMS\bin\Ninject.xml
+D:\vsProjects\mvcBPMS\mvcBPMS\bin\Ninject.Web.Common.xml
+D:\vsProjects\mvcBPMS\mvcBPMS\bin\Ninject.Web.Mvc.xml
+D:\vsProjects\mvcBPMS\mvcBPMS\bin\Castle.Core.dll
+D:\vsProjects\mvcBPMS\mvcBPMS\bin\Moq.dll
+D:\vsProjects\mvcBPMS\mvcBPMS\bin\Castle.Core.xml
+D:\vsProjects\mvcBPMS\mvcBPMS\bin\Moq.xml

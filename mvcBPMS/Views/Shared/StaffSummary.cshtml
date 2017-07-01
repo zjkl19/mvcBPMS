@@ -1,0 +1,23 @@
+﻿
+@model mvcBPMS.Models.staff
+
+<tr>
+
+    <td>
+        @Model.staff_no
+    </td>
+    <td>
+        @Model.staff_name
+    </td>
+    <td>
+        @using (Html.BeginForm("AddToStaffCart", "StaffCart"))
+            {
+            <div>
+                @Html.HiddenFor(x => x.id)
+                @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+                <input type="submit" value="添加职工">
+            </div>
+        }
+    </td>
+
+</tr>

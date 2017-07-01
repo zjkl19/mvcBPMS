@@ -44,6 +44,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.4.0.0\lib\net45\Castle.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.0.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.6\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -77,6 +81,22 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Moq, Version=4.7.12.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\packages\Moq.4.7.12\lib\net45\Moq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Web.Common, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.Common.3.2.3.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Web.Mvc, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.MVC5.3.2.1.0\lib\net45-full\Ninject.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -131,6 +151,10 @@
     <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebActivatorEx.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
@@ -195,6 +219,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -202,16 +227,35 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IndexController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProjectCartController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
+    <Compile Include="Controllers\Project_diffcult_coffController.cs" />
+    <Compile Include="Controllers\R_project_staffController.cs" />
+    <Compile Include="Controllers\StaffCartController.cs" />
     <Compile Include="Controllers\StaffController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\Binders\ProjectCartModelBinder.cs" />
+    <Compile Include="Infrastructure\Binders\StaffCartModelBinder.cs" />
+    <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
+    <Compile Include="Models\Abstract\IProjectCartProcessor.cs" />
+    <Compile Include="Models\Abstract\IProjectRepository.cs" />
+    <Compile Include="Models\Abstract\IR_project_staffRepository.cs" />
+    <Compile Include="Models\Abstract\IStaffRepository.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Concrete\EFDbContext.cs" />
+    <Compile Include="Models\Concrete\EFProjectRepository.cs" />
+    <Compile Include="Models\Concrete\EFR_project_staffRepository.cs" />
+    <Compile Include="Models\Concrete\EFStaffRepository.cs" />
+    <Compile Include="Models\Concrete\ListProjectCartProcessor.cs" />
     <Compile Include="Models\contact.cs">
       <DependentUpon>mvcBPMS.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Entities\ProjectCart.cs" />
+    <Compile Include="Models\Entities\StaffCart.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\join_r_project_staff_staff.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\mvcBPMS.Context.cs">
       <AutoGen>True</AutoGen>
@@ -257,6 +301,12 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\ProjectCartIndexViewModel.cs" />
+    <Compile Include="ViewModels\ProjectCartListViewModel.cs" />
+    <Compile Include="ViewModels\ProjectListViewModel.cs" />
+    <Compile Include="ViewModels\StaffCartIndexViewModel.cs" />
+    <Compile Include="ViewModels\ProjectCartStaffListViewModel.cs" />
+    <Compile Include="ViewModels\staff_r_project_staffViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -344,6 +394,20 @@
     <Content Include="Views\Contact\QueryContact.cshtml" />
     <Content Include="Views\Project\AddProject.cshtml" />
     <Content Include="Views\Project\ModProject.cshtml" />
+    <Content Include="Views\R_project_staff\AddR_project_staff.cshtml" />
+    <Content Include="Views\Project_diffcult_coff\AddProject_diffcult_coff.cshtml" />
+    <Content Include="Views\R_project_staff\QueryR_project_staff.cshtml" />
+    <Content Include="Views\Shared\PartialstaffView.cshtml" />
+    <Content Include="Views\R_project_staff\GetRelatedstaff.cshtml" />
+    <Content Include="Views\Project\List.cshtml" />
+    <Content Include="Views\Shared\ProjectSummary.cshtml" />
+    <Content Include="Views\ProjectCart\Index.cshtml" />
+    <Content Include="Views\Staff\List.cshtml" />
+    <Content Include="Views\Shared\StaffSummary.cshtml" />
+    <Content Include="Views\StaffCart\Index.cshtml" />
+    <Content Include="Views\ProjectCart\Completed.cshtml" />
+    <Content Include="Views\ProjectCart\Checkout.cshtml" />
+    <Content Include="Views\StaffCart\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

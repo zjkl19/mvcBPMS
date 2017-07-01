@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+using mvcBPMS.Models.Concrete;  //以后改成Abstract
+
 namespace mvcBPMS.Controllers
 {
     public class ContactController : Controller
@@ -75,7 +77,8 @@ namespace mvcBPMS.Controllers
             int staff_no = Convert.ToInt32(fc["staff_no"]);     //承接人工号
             //string staff_id="";
 
-            Models.BPMSxEntities db = new Models.BPMSxEntities();
+            //Models.BPMSxEntities db = new Models.BPMSxEntities();
+                EFDbContext db = new EFDbContext();
 
             var query = (from p in db.staff
                          where p.staff_no == staff_no

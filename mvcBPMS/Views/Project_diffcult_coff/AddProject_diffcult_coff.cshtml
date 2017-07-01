@@ -1,0 +1,23 @@
+﻿@model mvcBPMS.Models.project_diffcult_coff
+
+@{
+    ViewBag.Title = "AddProject_diffcult_coff";
+}
+
+<h2>AddProject_diffcult_coff</h2>
+
+@using (Html.BeginForm("AddProject_diffcult_coff", "Project_diffcult_coff", FormMethod.Post))
+{
+    @*@Html.Label("prj_diffculty_type", "项目类型")*@
+    @*@Html.TextBox("prj_diffculty_type")*@
+    @Html.LabelFor(x => x.prj_diffculty_type, "项目类型")
+    @Html.TextBoxFor(x => x.prj_diffculty_type)
+
+
+    <br />
+    @Html.Label("diffcult_coff", "难度系数")
+    @Html.TextBox("diffcult_coff")
+    <br />
+    <input type="submit" value="添加" />
+}
+<br />@ViewBag.message

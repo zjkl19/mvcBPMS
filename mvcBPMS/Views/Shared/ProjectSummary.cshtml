@@ -1,0 +1,26 @@
+﻿@model mvcBPMS.Models.project
+
+
+    <tr>
+        <td>
+            @Model.id
+        </td>
+        <td>
+            @Model.contact_id
+        </td>
+        <td>
+            @Model.project_name
+        </td>
+        <td>
+            @using (Html.BeginForm("AddToProjectCart", "ProjectCart"))
+            {
+                <div>
+                    @Html.HiddenFor(x => x.id)
+                    @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+                    <input type="submit" value="添加项目">
+                </div>
+            }
+        </td>
+
+    </tr>
+

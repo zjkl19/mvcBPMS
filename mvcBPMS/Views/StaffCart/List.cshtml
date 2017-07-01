@@ -1,0 +1,48 @@
+﻿@model mvcBPMS.ViewModels.ProjectCartStaffListViewModel
+
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>ProjectCartStaffList</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            关联合同id
+        </th>
+        <th>
+            项目名称
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model.ProjectCart.Lines)
+    {
+        <tr>
+            <td>@item.Project.contact_id</td>
+            <td>@item.Project.project_name</td>
+        </tr>
+    }
+
+</table>
+
+<table class="table">
+    <tr>
+        <th>
+            职工工号
+        </th>
+        <th>
+            职工姓名
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model.prop_staff)
+    {
+        @Html.Partial("StaffSummary", item)
+    }
+
+</table>

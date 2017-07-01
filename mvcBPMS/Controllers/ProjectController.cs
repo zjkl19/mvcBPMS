@@ -4,14 +4,41 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+using mvcBPMS.Models.Abstract;
+using mvcBPMS.ViewModels;
+
+
+using mvcBPMS.Models.Concrete;  //以后删掉这句
+
+using Ninject;
+
 namespace mvcBPMS.Controllers
 {
     public class ProjectController : Controller
     {
+        private IProjectRepository repository;
+
+        //构造函数
+        public ProjectController(IProjectRepository projectRepository)
+        {
+            this.repository = projectRepository;
+        }
+
         // GET: Project
         public ActionResult Index()
         {
             return View();
+        }
+
+        //列表
+        public ViewResult List()
+        {
+            //return View(repository.prop_project);
+            var model = new ProjectListViewModel
+            {
+                prop_project = repository.prop_project
+            };
+             return View(model);
         }
 
         public ActionResult AddProject()
@@ -39,7 +66,9 @@ namespace mvcBPMS.Controllers
 
             newData.id = Guid.NewGuid().ToString("N"); //去掉短横杠
 
-            Models.BPMSxEntities db = new Models.BPMSxEntities();
+            //Models.BPMSxEntities db = new Models.BPMSxEntities();
+            var db = new EFDbContext();
+
             //合同编号为空，表示项目无关联合同
             if (contact_no != "")
             {

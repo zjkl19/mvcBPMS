@@ -1,0 +1,25 @@
+﻿
+@model mvcBPMS.ViewModels.ProjectCartListViewModel
+
+<h2>Your Cart</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>关联合同id</th>
+            <th>项目名称</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var line in Model.ProjectCart.Lines)
+        {
+            <tr>
+                <td>@line.Project.contact_id</td>
+                <td>@line.Project.project_name</td>
+            </tr>
+        }
+    </tbody>
+
+
+</table>

@@ -37,6 +37,7 @@
                     <li class="dropdown">
                         @Html.ActionLink("项目基本信息管理", "About", "Home", new { @class = "dropdown-toggle" }, new { data_toggle = "dropdown" })
                         <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("项目查看", "List", "Project")</li>
                             <li>@Html.ActionLink("项目查询", "QueryProject", "Project")</li>
                             <li>@Html.ActionLink("项目添加", "AddProject", "Project")</li>
                             <li>@Html.ActionLink("项目修改", "ModProject", "Project")</li>
@@ -64,15 +65,16 @@
                     <li class="dropdown">
                         @Html.ActionLink("项目参与度管理", "About", "Home", new { @class = "dropdown-toggle" }, new { data_toggle = "dropdown" })
                         <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("参与信息查询", "About", "Home")</li>
-                            <li>@Html.ActionLink("参与信息添加", "Contact", "Home")</li>
-                            <li>@Html.ActionLink("参与信息修改", "Contact", "Home")</li>
-                            <li>@Html.ActionLink("参与信息删除", "Contact", "Home")</li>
+                            <li>@Html.ActionLink("参与信息查询", "QueryR_project_staff", "R_project_staff")</li>
+                            <li>@Html.ActionLink("参与信息添加", "AddQueryR_project_staff", "R_project_staff")</li>
+                            <li>@Html.ActionLink("参与信息修改", "ModQueryR_project_staff", "R_project_staff")</li>
+                            <li>@Html.ActionLink("参与信息删除", "DelQueryR_project_staff", "R_project_staff")</li>
                         </ul>
                     </li>
                     <li class="dropdown">
                         @Html.ActionLink("职工信息管理", "Index", "Staff", new { @class = "dropdown-toggle" }, new { data_toggle = "dropdown" })
                         <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("职工信息列表", "List", "Staff")</li>
                             <li>@Html.ActionLink("职工信息查询", "QueryStaff", "Staff")</li>
                             <li>@Html.ActionLink("职工信息添加", "AddStaff", "Staff")</li>
                             <li>@Html.ActionLink("职工信息修改", "ModStaff", "Staff")</li>

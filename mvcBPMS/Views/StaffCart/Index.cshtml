@@ -1,0 +1,66 @@
+﻿@model mvcBPMS.ViewModels.ProjectStaffCartIndexViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>关联合同id</th>
+            <th>项目名称</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var line in Model.ProjectCart.Lines)
+        {
+            <tr>
+                <td>@line.Project.contact_id</td>
+                <td>@line.Project.project_name</td>
+            </tr>
+        }
+    </tbody>
+
+
+</table>
+
+<br />
+
+
+<table>
+    <thead>
+        <tr>
+            <th>职工工号</th>
+            <th>职工姓名</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var line in Model.StaffCart.Lines)
+        {
+            <tr>
+                <td>@line.Staff.staff_no</td>
+                <td>@line.Staff.staff_name</td>
+                <td>
+                    @using (Html.BeginForm("RemoveFromStaffCart", "StaffCart"))
+                    {
+                        @Html.Hidden("id", line.Staff.id)
+                        @Html.HiddenFor(x => x.ReturnUrl)
+                        <input type="submit" value="Remove" />
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+
+
+</table>
+
+<div>
+    <a href="@Model.ReturnUrl">继续添加职工</a>
+    @Html.ActionLink("完成职工添加", "Checkout", "StaffCart")
+    
+</div>

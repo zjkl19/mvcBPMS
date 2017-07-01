@@ -1,0 +1,32 @@
+﻿
+
+@model mvcBPMS.ViewModels.ProjectListViewModel
+
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>ProjectList</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            id
+        </th>
+        <th>
+            关联合同id
+        </th>
+        <th>
+            项目名称
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.prop_project)
+    {
+        @Html.Partial("ProjectSummary", item)
+    }
+
+</table>
+

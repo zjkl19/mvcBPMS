@@ -1,0 +1,90 @@
+﻿@using mvcBPMS.Models
+@model IEnumerable<mvcBPMS.Models.r_project_staff>
+
+
+@{
+    ViewBag.Title = "QueryR_project_staff";
+}
+
+<h2>QueryR_project_staff</h2>
+@using (Html.BeginForm("QueryR_project_staff", "R_project_staff", FormMethod.Post))
+{
+    @Html.Label("project_id", "项目id")
+    @Html.TextBox("project_id")
+    <br />
+    <input type="submit" value="查询" />
+}
+@if (ViewBag.query != 0)
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                项目id
+            </th>
+            <th>
+                职工id
+            </th>
+            <th>
+                是否负责
+            </th>
+            <th>
+                现场工作系数
+            </th>
+            <th>
+                方案系数
+            </th>
+            <th>
+                报告系数
+            </th>
+            <th>
+                校验系数
+            </th>
+            <th>
+                其它系数
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.project_id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.staff_id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.is_response)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.scene_coff)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.plan_coff)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.report_coff)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.report_check_coff)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.others_coff)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                </td>
+            </tr>
+        }
+
+    </table>
+    @* @Html.Action("GetDetailstaff", "Staff") *@
+    @Html.Action("GetRelatedstaff");
+
+}

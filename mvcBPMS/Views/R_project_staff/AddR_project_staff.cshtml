@@ -1,0 +1,35 @@
+﻿@model mvcBPMS.Models.r_project_staff
+
+@{
+    ViewBag.Title = "AddR_project_staff";
+}
+
+<h2>AddR_project_staff</h2>
+
+@using (Html.BeginForm("AddR_project_staff", "R_project_staff", FormMethod.Post))
+{
+    @Html.Label("project_id", "项目id")
+    @Html.TextBox("project_id")
+    <br />
+    @Html.Label("staff_no", "职工工号")
+    @Html.TextBox("staff_no")
+    <br />
+    @Html.Label("scene_coff", "现场工作")
+    @Html.TextBox("scene_coff")
+    <br />
+    @Html.Label("plan_coff", "方案制定")
+    @Html.TextBox("plan_coff")
+    <br />
+    @Html.Label("report_coff", "报告撰写")
+    @Html.TextBox("report_coff")
+    <br />
+    @Html.Label("report_check_coff", "报告校核")
+    @Html.TextBox("report_check_coff")
+    <br />
+    @Html.Label("others_check", "其它工作")
+    @Html.TextBox("others_check")
+    <br />
+    <input type="submit" value="添加" />
+}
+<br />@ViewBag.message
+
