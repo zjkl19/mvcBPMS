@@ -72,13 +72,11 @@ namespace mvcBPMS.Controllers
         {
 
            
-            //prjCart = (ProjectCart)TempData["projectCart"];
-
 
             return View(new ProjectStaffCartIndexViewModel
             {
 
-                //ProjectCart= (ProjectCart)TempData["projectCart"],
+
                 ProjectCart = pCart,
                 StaffCart = stfCart,
                 ReturnUrl = returnUrl
@@ -103,9 +101,9 @@ namespace mvcBPMS.Controllers
 
                 //TempData["projectCart"] = cart;
                 //var td = (ProjectCart)TempData["projectCart"];
-                var ppCart = cart;
+                //var ppCart = cart;
                 //Session.Remove("Cart");
-                return RedirectToAction("List", "StaffCart", new { pCart = ppCart });
+                return RedirectToAction("List", "StaffCart", new { pCart = stfCart });
 
                 //return View(model);
 

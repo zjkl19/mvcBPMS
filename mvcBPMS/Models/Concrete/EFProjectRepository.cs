@@ -11,6 +11,7 @@ namespace mvcBPMS.Models.Concrete
     {
         private EFDbContext context = new EFDbContext();
 
+        //浏览全部项目
         public IEnumerable<project> prop_project
         {
             get

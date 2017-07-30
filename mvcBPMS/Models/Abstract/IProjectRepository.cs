@@ -7,9 +7,8 @@ namespace mvcBPMS.Models.Abstract
 {
     public interface IProjectRepository
     {
-        
-        IEnumerable <project> prop_project { get; }
-
+        //浏览全部项目        
+        IEnumerable<project> prop_project { get; }
         
     }
 }

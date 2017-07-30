@@ -10,6 +10,7 @@ namespace mvcBPMS.Models.Concrete
 {
     public class EFDbContext:DbContext
     {
+
         public DbSet<staff> staff { get; set; }
 
         public DbSet<contact> contact { get; set; }
@@ -17,7 +18,6 @@ namespace mvcBPMS.Models.Concrete
         public DbSet<r_project_staff> r_project_staff { get; set; }
 
         public DbSet<project> project { get; set; }
-        //public System.Data.Entity.DbSet<mvcBPMS.Models.project> project { get; set; }
 
         public System.Data.Entity.DbSet<mvcBPMS.Models.join_r_project_staff_staff> join_r_project_staff_staff { get; set; }
     }

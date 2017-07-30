@@ -54,11 +54,12 @@ namespace mvcBPMS.Controllers
         // GET: Staff
         public ActionResult Index()
         {
-            Models.BPMSxEntities db = new Models.BPMSxEntities();
+            //Models.BPMSxEntities db = new Models.BPMSxEntities();
 
-            var data = db.staff;
+            //var data = db.staff;
 
-            return View(data);
+            //return View(data);
+            return View(repository.prop_staff);
         }
 
         /// <summary>
