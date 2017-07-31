@@ -10,8 +10,10 @@ namespace mvcBPMS.Controllers
 {
     public class R_project_staffController : Controller
     {
+        //项目-职工关联表仓库
         private IR_project_staffRepository repository;
 
+        //构造函数
         public R_project_staffController(IR_project_staffRepository repo)
         {
             this.repository = repo;
@@ -23,6 +25,10 @@ namespace mvcBPMS.Controllers
             return View();
         }
 
+        /// <summary>
+        ///查询“项目-职工”关联表
+        /// </summary>
+        /// <returns>ActionResult</returns>
         public ActionResult QueryR_project_staff()
         {
             //Models.BPMSxEntities db = new Models.BPMSxEntities();
@@ -32,9 +38,13 @@ namespace mvcBPMS.Controllers
             ViewBag.query = 0;
             return View();
         }
+
+        /// <summary>
+        ///通过项目id查询“项目-职工”关联表信息
+        /// </summary>
+        /// <param name="fc">含有项目id的表单</param>
+        /// <returns>ViewResult</returns>
         [HttpPost]
-        //FormCollection form
-        //public ActionResult QueryStaff(int staff_no)
         public ViewResult QueryR_project_staff(FormCollection fc)
         {
             string project_id = Convert.ToString(fc["project_id"]);     //读入表单数据
@@ -53,22 +63,30 @@ namespace mvcBPMS.Controllers
             return View(repository.QueryR_project_staff_By_project_id(project_id));
         }
 
+        /// <summary>
+        ///查询指定项目id参与的职工信息
+        /// </summary>
+        /// <returns>ActionResult</returns>
         [ChildActionOnly]
         public ActionResult GetRelatedstaff()
         {
             return PartialView(repository.Query_join_r_project_staff_staff_By_project_id("8387a311a7d44bcc9c2e43e8b49d9e2d"));
         }
 
-
+        /// <summary>
+        ///添加“项目-职工”关联表中的记录（开发者测试使用）
+        /// </summary>
+        /// <returns>ActionResult</returns>
         public ActionResult AddR_project_staff()
         {
             return View();
         }
 
         /// <summary>
-        /// 添加职工参与信息
+        ///添加“项目-职工”关联表中的记录（开发者测试使用）
         /// </summary>
-        /// <param name="fc">页面表单元素的数据</param>
+        /// <param name="fc">包含项目id，职工工号等信息的表单</param>
+        /// <returns>ActionResult</returns>
         [HttpPost]
         public ActionResult AddR_project_staff(FormCollection fc)
         {

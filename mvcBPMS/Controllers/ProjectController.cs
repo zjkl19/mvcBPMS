@@ -31,7 +31,9 @@ namespace mvcBPMS.Controllers
             return View();
         }
 
-        //列表
+        /// <summary>
+        ///列出所有项目
+        /// <returns>ViewResult</returns>
         public ViewResult List()
         {
             //return View(repository.prop_project);
@@ -42,6 +44,9 @@ namespace mvcBPMS.Controllers
              return View(model);
         }
 
+        /// <summary>
+        ///添加项目信息初始页面
+        /// <returns>ViewResult</returns>
         public ActionResult AddProject()
         {
             return View();
@@ -50,7 +55,8 @@ namespace mvcBPMS.Controllers
         /// <summary>
         /// 添加项目信息
         /// </summary>
-        /// <param name="fc">页面表单元素的数据</param>
+        /// <param name="fc">包含关联合同编号，项目名称等信息在内的表单</param>
+        /// <returns>ActionResult</returns>
         [HttpPost]
         public ActionResult AddProject(FormCollection fc)
         {
@@ -113,6 +119,10 @@ namespace mvcBPMS.Controllers
 
         }
 
+        /// <summary>
+        /// 修改项目信息初始页面
+        /// </summary>
+        /// <returns>ActionResult</returns>
         public ActionResult ModProject()
         {
 
@@ -122,7 +132,8 @@ namespace mvcBPMS.Controllers
         /// <summary>
         /// 修改指定项目id的项目信息
         /// </summary>
-        /// <param name="fc">页面表单元素的数据</param>
+        /// <param name="fc">包含准备修改项目的id、关联合同编号、项目名称等信息</param>
+        /// <returns>ActionResult</returns>
         [HttpPost]
         public ActionResult ModProject(FormCollection fc)
         {

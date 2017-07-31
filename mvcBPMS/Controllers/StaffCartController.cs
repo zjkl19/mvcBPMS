@@ -13,9 +13,10 @@ namespace mvcBPMS.Controllers
 {
     public class StaffCartController : Controller
     {
+        //职工仓库（库模式）
         private IStaffRepository stfrepository;
  
-
+        //构造函数
         public StaffCartController(IStaffRepository stfrepo)
         {
             stfrepository = stfrepo;
@@ -42,6 +43,13 @@ namespace mvcBPMS.Controllers
             return View(model);
         }
 
+        /// <summary>
+        ///添加“职工购物车”
+        /// </summary>
+        /// <param name="cart">“职工购物车”<see cref="StaffCart"/></param>
+        /// <param name="id">被添加职工的id</param>
+        /// <param name="returnUrl"></param>
+        /// <returns>RedirectToRouteResult</returns>
         public RedirectToRouteResult AddToStaffCart(StaffCart cart, string id, string returnUrl)
         {
             var staff = stfrepository.prop_staff.FirstOrDefault(p => p.id == id);
@@ -52,6 +60,13 @@ namespace mvcBPMS.Controllers
             return RedirectToAction("Index", new { returnUrl= returnUrl });
         }
 
+        /// <summary>
+        ///将“职工”从“职工购物车”中移除
+        /// </summary>
+        /// <param name="cart">“职工购物车”<see cref="StaffCart"/></param>
+        /// <param name="id">被移除职工的id</param>
+        /// <param name="returnUrl"></param>
+        /// <returns>RedirectToRouteResult</returns>
         public RedirectToRouteResult RemoveFromStaffCart(StaffCart cart, string id, string returnUrl)
         {
             var staff = stfrepository.prop_staff.FirstOrDefault(p => p.id == id);
@@ -63,16 +78,15 @@ namespace mvcBPMS.Controllers
         }
 
 
-        //private ProjectCart GetProjectCart()
-        //{
-        //
-        //}
-
+        /// <summary>
+        ///“项目购物车”-“职工购物车”显示页面
+        /// </summary>
+        /// <param name="pcart">“项目购物车”<see cref="ProjectCart"/></param>
+        /// <param name="stfcart">“职工购物车”<see cref="StaffCart"/></param>
+        /// <param name="returnUrl"></param>
+        /// <returns>ViewResult</returns>
         public ViewResult Index(ProjectCart pCart,StaffCart stfCart, string returnUrl)
         {
-
-           
-
             return View(new ProjectStaffCartIndexViewModel
             {
 
@@ -84,8 +98,12 @@ namespace mvcBPMS.Controllers
             });
         }
 
-        //结算项目"购物车"
-        //[HttpPost]
+        /// <summary>
+        ///“项目购物车”-“职工购物车”结算
+        /// </summary>
+        /// <param name="pcart">“项目购物车”<see cref="ProjectCart"/></param>
+        /// <param name="stfcart">“职工购物车”<see cref="StaffCart"/></param>
+        /// <returns>ActionResult</returns>
         public ActionResult Checkout(ProjectCart prjcart, StaffCart stfCart)
         {
 

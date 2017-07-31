@@ -22,6 +22,7 @@ namespace mvcBPMS.Controllers
 {
     public class StaffController : Controller
     {
+        //职工仓库（库模式）
         private IStaffRepository repository;
 
         //构造函数
@@ -30,7 +31,24 @@ namespace mvcBPMS.Controllers
             this.repository = staffRepository;
         }
 
-        //列表
+        /// <summary>
+        ///Index表示控制器默认页面
+        /// <returns>ViewResult</returns>
+        public ViewResult Index()
+        {
+            //Models.BPMSxEntities db = new Models.BPMSxEntities();
+
+            //var data = db.staff;
+
+            //return View(data);
+            return View(repository.prop_staff);
+        }
+
+        /// <summary>
+        ///列出指定项目购物车下，所有职工信息
+        /// </summary>
+        /// <param name="pcart">准备进行结算的“项目购物车”<see cref="ProjectCart"/></param>
+        /// <returns>ViewResult</returns>
         public ViewResult List(ProjectCart pCart)
         {
 
@@ -51,17 +69,6 @@ namespace mvcBPMS.Controllers
             return View(model);
         }
 
-        // GET: Staff
-        public ActionResult Index()
-        {
-            //Models.BPMSxEntities db = new Models.BPMSxEntities();
-
-            //var data = db.staff;
-
-            //return View(data);
-            return View(repository.prop_staff);
-        }
-
         /// <summary>
         /// 职工信息查询
         /// </summary>
@@ -71,23 +78,16 @@ namespace mvcBPMS.Controllers
             ViewBag.query = 0;
             return View();
         }
+
         /// <summary>
         /// 列出指定工号的职工信息
         /// </summary>
-        /// <param name="fc">页面表单元素的数据</param>
-        /// <returns>指定工号的staff数据</returns>
+        /// <param name="fc">包含工号的页面表单元素</param>
+        /// <returns>ViewResult:指定工号的职工信息的视图</returns>
         [HttpPost]
-        //FormCollection form
-        //public ActionResult QueryStaff(int staff_no)
         public ViewResult QueryStaff(FormCollection fc)
         {
             int staff_no = Convert.ToInt32(fc["staff_no"]);     //读入表单数据
-
-            //Models.BPMSxEntities db = new Models.BPMSxEntities();
-
-            //var query = from q in db.staff
-            //            where q.staff_no == staff_no
-            //            select q;
 
             ViewBag.staff_no = staff_no;
             ViewBag.query = 1;
@@ -104,17 +104,21 @@ namespace mvcBPMS.Controllers
         //}
 
 
-        public ActionResult AddStaff()
-        {
-            
-            return View();
-        }
         /// <summary>
         /// 添加职工信息
         /// </summary>
-        /// <param name="fc">页面表单元素的数据</param>
+        /// <returns>ViewResult:添加职工信息的视图</returns>
+        public ViewResult AddStaff()
+        {      
+            return View();
+        }
+
+        /// <summary>
+        /// 添加职工信息
+        /// </summary>
+        /// <param name="fc">含有职工信息的表单</param>
+        /// <returns>ViewResult:添加职工信息的后返回的视图</returns>
         [HttpPost]
-        //public ActionResult AddStaff(int staff_no,string staff_password,string staff_name,string gender,string office_phone,string mobile_phone,string position)
         public ViewResult AddStaff(FormCollection fc)
         {
             ViewBag.message = "添加信息成功！";
@@ -129,17 +133,21 @@ namespace mvcBPMS.Controllers
 
         }
 
-        public ActionResult ModStaff()
+        /// <summary>
+        /// 修改职工信息
+        /// </summary>
+        /// <returns>ViewResult:修改职工信息的视图</returns>
+        public ViewResult ModStaff()
         {
-
             return View();
         }
+
         /// <summary>
         /// 修改指定工号的职工信息
         /// </summary>
-        /// <param name="fc">页面表单元素的数据</param>
+        /// <param name="fc">含有职工信息的表单</param>
+        /// <returns>ViewResult:修改职工信息的后返回的视图</returns>
         [HttpPost]
-        //public ActionResult ModStaff(int staff_no, string staff_password, string staff_name, string gender, string office_phone, string mobile_phone, string position)
         public ActionResult ModStaff(FormCollection fc)
         {
 
