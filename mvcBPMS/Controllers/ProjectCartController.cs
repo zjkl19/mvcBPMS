@@ -14,13 +14,22 @@ namespace mvcBPMS.Controllers
 {
     public class ProjectCartController : Controller
     {
+        //项目仓库（库模式）
         private IProjectRepository repository;
 
+        //构造函数
         public ProjectCartController(IProjectRepository repo)
         {
             repository = repo;
         }
 
+        /// <summary>
+        ///添加“项目购物车”
+        /// </summary>
+        /// <param name="cart">“项目购物车”<see cref="ProjectCart"/></param>
+        /// <param name="id">被添加项目的id</param>
+        /// <param name="returnUrl"></param>
+        /// <returns>RedirectToRouteResult</returns>
         public RedirectToRouteResult AddToProjectCart(ProjectCart cart, string id,string returnUrl)
         {
             var project = repository.prop_project.FirstOrDefault(p => p.id == id);
@@ -31,6 +40,13 @@ namespace mvcBPMS.Controllers
             return RedirectToAction("Index", new { returnUrl });
         }
 
+        /// <summary>
+        ///将“项目”从“项目购物车”中移除
+        /// </summary>
+        /// <param name="cart">“项目购物车”<see cref="ProjectCart"/></param>
+        /// <param name="id">被移除项目的id</param>
+        /// <param name="returnUrl"></param>
+        /// <returns>RedirectToRouteResult</returns>
         public RedirectToRouteResult RemoveFromProjectCart(ProjectCart cart, string id,string returnUrl)
         {
             var project = repository.prop_project.FirstOrDefault(p => p.id ==id);
@@ -41,7 +57,13 @@ namespace mvcBPMS.Controllers
             return RedirectToAction("Index", new { returnUrl });
         }
 
-
+        /// <summary>
+        ///首页
+        /// </summary>
+        /// <param name="cart">“项目购物车”<see cref="ProjectCart"/></param>
+        /// <param name="id">被移除项目的id</param>
+        /// <param name="returnUrl"></param>
+        /// <returns>RedirectToRouteResult</returns>
         public ViewResult Index(ProjectCart cart,string returnUrl)
         {
             return View(new ProjectCartIndexViewModel
@@ -52,7 +74,12 @@ namespace mvcBPMS.Controllers
             });
         }
 
-        //结算项目"购物车"
+        /// <summary>
+        /// 结算“项目购物车”
+        /// </summary>
+        /// <param name="cart">“项目购物车”<see cref="ProjectCart"/></param>
+        /// <returns>ActionResult</returns>
+
         //[HttpPost]
         public ActionResult Checkout(ProjectCart cart)
         {

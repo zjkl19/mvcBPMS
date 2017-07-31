@@ -16,6 +16,7 @@ namespace mvcBPMS.Controllers
 {
     public class ProjectController : Controller
     {
+        //项目仓库（库模式）
         private IProjectRepository repository;
 
         //构造函数

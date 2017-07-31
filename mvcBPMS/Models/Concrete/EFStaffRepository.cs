@@ -17,7 +17,7 @@ namespace mvcBPMS.Models.Concrete
     {
         private EFDbContext context = new EFDbContext();
 
-        //浏览全部职工信息
+        //全部职工信息
         public IEnumerable<staff> prop_staff
         {
             get
@@ -34,7 +34,7 @@ namespace mvcBPMS.Models.Concrete
         ///通过工号查询职工信息
         /// </summary>
         /// <param name="staff_no">职工工号(与数据库中的定义相关联)<see cref="staff"/></param>
-        /// <returns>指定工号的职工详细信息<see cref="r_project_staff"/></returns>
+        /// <returns>指定工号的职工详细信息<see cref="staff"/></returns>
         public IEnumerable<staff> QueryStaffBystaff_no(int staff_no)
         {
             return context.staff.Where(p=>p.staff_no==staff_no);
@@ -43,7 +43,7 @@ namespace mvcBPMS.Models.Concrete
         /// <summary>
         ///往数据库中添加职工信息
         /// </summary>
-        /// <param name="fc">View视图中表单的信息</param>
+        /// <param name="fc">包含职工工号，密码在内的信息</param>
         /// <returns>true表示添加成功,false表示添加失败</returns>
         public bool AddStaff(FormCollection fc)
         {

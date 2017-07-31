@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace mvcBPMS.Controllers
 {
+    //该类暂时弃用 林迪南 20170731
     public class Project_diffcult_coffController : Controller
     {
         // GET: Project_diffcult_coff
