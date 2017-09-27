@@ -241,6 +241,7 @@
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
     <Compile Include="Models\Abstract\IProjectCartProcessor.cs" />
     <Compile Include="Models\Abstract\IProjectRepository.cs" />
+    <Compile Include="Models\Abstract\IQuota.cs" />
     <Compile Include="Models\Abstract\IR_project_staffRepository.cs" />
     <Compile Include="Models\Abstract\IStaffRepository.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -249,6 +250,7 @@
     <Compile Include="Models\Concrete\EFR_project_staffRepository.cs" />
     <Compile Include="Models\Concrete\EFStaffRepository.cs" />
     <Compile Include="Models\Concrete\ListProjectCartProcessor.cs" />
+    <Compile Include="Models\Concrete\StdPeriDeteQuota.cs" />
     <Compile Include="Models\contact.cs">
       <DependentUpon>mvcBPMS.tt</DependentUpon>
     </Compile>
@@ -408,6 +410,7 @@
     <Content Include="Views\ProjectCart\Completed.cshtml" />
     <Content Include="Views\ProjectCart\Checkout.cshtml" />
     <Content Include="Views\StaffCart\List.cshtml" />
+    <Content Include="Views\Project\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

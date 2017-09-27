@@ -24,6 +24,23 @@ namespace mvcBPMS.Controllers
         }
 
         /// <summary>
+        ///首页
+        /// </summary>
+        /// <param name="cart">“项目购物车”<see cref="ProjectCart"/></param>
+        /// <param name="id">被移除项目的id</param>
+        /// <param name="returnUrl"></param>
+        /// <returns>RedirectToRouteResult</returns>
+        public ViewResult Index(ProjectCart cart, string returnUrl)
+        {
+            return View(new ProjectCartIndexViewModel
+            {
+                ReturnUrl = returnUrl,
+                ProjectCart = cart
+
+            });
+        }
+
+        /// <summary>
         ///添加“项目购物车”
         /// </summary>
         /// <param name="cart">“项目购物车”<see cref="ProjectCart"/></param>
@@ -57,22 +74,6 @@ namespace mvcBPMS.Controllers
             return RedirectToAction("Index", new { returnUrl });
         }
 
-        /// <summary>
-        ///首页
-        /// </summary>
-        /// <param name="cart">“项目购物车”<see cref="ProjectCart"/></param>
-        /// <param name="id">被移除项目的id</param>
-        /// <param name="returnUrl"></param>
-        /// <returns>RedirectToRouteResult</returns>
-        public ViewResult Index(ProjectCart cart,string returnUrl)
-        {
-            return View(new ProjectCartIndexViewModel
-            {
-                ReturnUrl = returnUrl,
-                ProjectCart = cart
-                
-            });
-        }
 
         /// <summary>
         /// 结算“项目购物车”

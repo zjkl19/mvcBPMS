@@ -25,14 +25,16 @@ namespace mvcBPMS.Controllers
             this.repository = projectRepository;
         }
 
-        // GET: Project
-        public ActionResult Index()
+        /// <summary>
+        ///项目信息总览
+        /// <returns>ViewResult</returns>
+        public ViewResult Index()
         {
-            return View();
+            return View(repository.prop_project);
         }
 
         /// <summary>
-        ///列出所有项目
+        ///项目成员管理
         /// <returns>ViewResult</returns>
         public ViewResult List()
         {

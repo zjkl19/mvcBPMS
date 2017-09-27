@@ -33,14 +33,11 @@ namespace mvcBPMS.Controllers
 
         /// <summary>
         ///Index表示控制器默认页面
+        ///职工信息总览
         /// <returns>ViewResult</returns>
         public ViewResult Index()
         {
-            //Models.BPMSxEntities db = new Models.BPMSxEntities();
-
-            //var data = db.staff;
-
-            //return View(data);
+  
             return View(repository.prop_staff);
         }
 
@@ -49,6 +46,9 @@ namespace mvcBPMS.Controllers
         /// </summary>
         /// <param name="pcart">准备进行结算的“项目购物车”<see cref="ProjectCart"/></param>
         /// <returns>ViewResult</returns>
+
+        [NonAction]
+        //[ChildActionOnly]
         public ViewResult List(ProjectCart pCart)
         {
 
@@ -62,7 +62,6 @@ namespace mvcBPMS.Controllers
             //ViewBag.ProjectCart = pCart;
             var model = new ProjectCartStaffListViewModel
             {
-                //ProjectCart= (ProjectCart)TempData["projectCart"],
                 ProjectCart = pCart,
                 prop_staff = repository.prop_staff
             };
@@ -71,6 +70,7 @@ namespace mvcBPMS.Controllers
 
         /// <summary>
         /// 职工信息查询
+        /// 默认页面
         /// </summary>
         public ActionResult QueryStaff()
         {
@@ -117,7 +117,7 @@ namespace mvcBPMS.Controllers
         /// 添加职工信息
         /// </summary>
         /// <param name="fc">含有职工信息的表单</param>
-        /// <returns>ViewResult:添加职工信息的后返回的视图</returns>
+        /// <returns>ViewResult:添加职工信息后返回的视图</returns>
         [HttpPost]
         public ViewResult AddStaff(FormCollection fc)
         {

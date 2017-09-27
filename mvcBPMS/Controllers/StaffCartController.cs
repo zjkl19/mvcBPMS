@@ -36,7 +36,6 @@ namespace mvcBPMS.Controllers
             //ViewBag.ProjectCart = pCart;
             var model = new ProjectCartStaffListViewModel
             {
-                //ProjectCart= (ProjectCart)TempData["projectCart"],
                 ProjectCart = pCart,
                 prop_staff = stfrepository.prop_staff
             };

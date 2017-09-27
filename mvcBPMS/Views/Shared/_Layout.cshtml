@@ -37,31 +37,15 @@
                     <li class="dropdown">
                         @Html.ActionLink("项目基本信息管理", "About", "Home", new { @class = "dropdown-toggle" }, new { data_toggle = "dropdown" })
                         <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("项目查看", "List", "Project")</li>
+                            <li>@Html.ActionLink("项目总览", "Index", "Project")</li>
                             <li>@Html.ActionLink("项目查询", "QueryProject", "Project")</li>
                             <li>@Html.ActionLink("项目添加", "AddProject", "Project")</li>
                             <li>@Html.ActionLink("项目修改", "ModProject", "Project")</li>
                             <li>@Html.ActionLink("项目删除", "DelProject", "Project")</li>
+                            <li>@Html.ActionLink("项目成员管理", "List", "Project")</li>
                         </ul>
                     </li>
-                    <li class="dropdown">
-                        @Html.ActionLink("项目资金流动管理", "About", "Home", new { @class = "dropdown-toggle" }, new { data_toggle = "dropdown" })
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("资金流动查询", "About", "Home")</li>
-                            <li>@Html.ActionLink("资金流动添加", "Contact", "Home")</li>
-                            <li>@Html.ActionLink("资金流动修改", "Contact", "Home")</li>
-                            <li>@Html.ActionLink("资金流动删除", "Contact", "Home")</li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        @Html.ActionLink("项目体系管理", "About", "Home", new { @class = "dropdown-toggle" }, new { data_toggle = "dropdown" })
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("项目体系管理", "About", "Home")</li>
-                            <li>@Html.ActionLink("项目难度系数管理", "Contact", "Home")</li>
-                            <li>@Html.ActionLink("项目复杂系数管理", "Contact", "Home")</li>
-                            <li>@Html.ActionLink("项目完成分配比例管理", "Contact", "Home")</li>
-                        </ul>
-                    </li>
+
                     <li class="dropdown">
                         @Html.ActionLink("项目参与度管理", "About", "Home", new { @class = "dropdown-toggle" }, new { data_toggle = "dropdown" })
                         <ul class="dropdown-menu">
@@ -75,7 +59,6 @@
                         @Html.ActionLink("职工信息管理", "Index", "Staff", new { @class = "dropdown-toggle" }, new { data_toggle = "dropdown" })
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink("职工信息总览", "Index", "Staff")</li>
-                            <li>@Html.ActionLink("职工信息列表", "List", "Staff")</li>
                             <li>@Html.ActionLink("职工信息查询", "QueryStaff", "Staff")</li>
                             <li>@Html.ActionLink("职工信息添加", "AddStaff", "Staff")</li>
                             <li>@Html.ActionLink("职工信息修改", "ModStaff", "Staff")</li>

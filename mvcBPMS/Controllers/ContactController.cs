@@ -24,29 +24,38 @@ namespace mvcBPMS.Controllers
             ViewBag.query = 0;
             return View();
         }
+
+        [HttpPost]
+        public ActionResult QueryContact(FormCollection fc)
+        {
+            ViewBag.query = 0;
+            return View();
+        }
         /// <summary>
         /// 列出指定查询条件的合同信息
         /// </summary>
         /// <param name="fc">页面表单元素的数据</param>
         /// <returns>指定查询条件的Contact数据</returns>
-        [HttpPost]
-        public ActionResult QueryContact(FormCollection fc)
-        {
-            string contact_no = Convert.ToString(fc["contact_no"]);     //读入表单数据
+            /*
+            [HttpPost]
+            public ActionResult QueryContact(FormCollection fc)
+            {
+                string contact_no = Convert.ToString(fc["contact_no"]);     //读入表单数据
 
-            contact_no = contact_no.ToUpper();
+                contact_no = contact_no.ToUpper();
 
-            Models.BPMSxEntities db = new Models.BPMSxEntities();
+                Models.BPMSxEntities db = new Models.BPMSxEntities();
 
-            var query = from q in db.contact
-                        where q.contact_no ==contact_no 
-                        select q;
+                var query = from q in db.contact
+                            where q.contact_no ==contact_no 
+                            select q;
 
-            ViewBag.staff_no = contact_no;
-            ViewBag.query = 1;
+                ViewBag.staff_no = contact_no;
+                ViewBag.query = 1;
 
-            return View(query);
-        }
+                return View(query);
+            }
+            */
 
         public ActionResult AddContact()
         {

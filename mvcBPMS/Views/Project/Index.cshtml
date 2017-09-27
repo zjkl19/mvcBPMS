@@ -1,51 +1,48 @@
-﻿@model IEnumerable<mvcBPMS.Models.staff>
+﻿@model IEnumerable<mvcBPMS.Models.project>
 
-<h2>职工信息总览</h2>
+
+<h2>项目总览</h2>
+
 
 <table class="table">
     <tr>
         <th>
-            工号
+            项目名称
         </th>
         <th>
-            姓名
+            标准产值
         </th>
         <th>
-            性别
+            进场日期
         </th>
         <th>
-            办公电话
+            退场日期
         </th>
         <th>
-            移动电话
+           批准日期
         </th>
-        <th>
-            职务
-        </th>
+
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.staff_no)
+            @Html.DisplayFor(modelItem => item.project_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.standard_product_value)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.enter_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.exit_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.approved_datatime)
         </td>
 
-        <td>
-            @Html.DisplayFor(modelItem => item.staff_name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.gender)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.office_phone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.mobile_phone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.position)
-        </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
             @Html.ActionLink("Details", "Details", new { id=item.id }) |
